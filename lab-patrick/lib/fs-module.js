@@ -1,21 +1,12 @@
 'use strict';
 
 const fs = require('fs');
+const textArray = ['../data/one.txt', '../data/two.txt', '../data/three.txt'];
 
-fs.readFile(`../data/one.txt`, function(err, data){
-  if(err) throw err;
-  let oneData = data.toString('hex', 0, 8);
-  console.log('one', oneData);
-
-  fs.readFile(`../data/two.txt`, function(err, data){
+for (var i = 0; i < textArray.length; i++ ) {
+  fs.readFile(textArray[i], function(err, data){
     if(err) throw err;
-    let twoData = data.toString('hex', 0, 8);
-    console.log('two', twoData);
-
-    fs.readFile(`../data/three.txt`, function(err, data){
-      if(err) throw err;
-      let threeData = data.toString('hex', 0, 8);
-      console.log('three', threeData);
-    });
-  });
-});
+    let dataI = data.toString('hex', 0, 8);
+    console.log(dataI);
+  })
+}
