@@ -3,10 +3,23 @@
 const fs = require('fs');
 const textArray = ['../data/one.txt', '../data/two.txt', '../data/three.txt'];
 
-for (var i = 0; i < textArray.length; i++ ) {
-  fs.readFile(textArray[i], function(err, data){
+
+module.exports =function() {
+  const hexArray = [];
+
+  fs.readFile(textArray[0], (err, data) => {
     if(err) throw err;
-    let dataI = data.toString('hex', 0, 8);
-    console.log(dataI);
-  })
-}
+    hexArray.push(data.toString('hex', 0, 8));
+
+    fs.readFile(textArray[1], (err, data) => {
+      if(err) throw err;
+      hexArray.push(data.toString('hex', 0, 8));
+
+      fs.readFile(textArray[2], (err, data) => {
+        if(err) throw err;
+        hexArray.push(data.toString('hex', 0, 8));
+        console.log(hexArray);
+      });
+    });
+  });
+};
